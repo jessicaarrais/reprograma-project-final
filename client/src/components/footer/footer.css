@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css?family=Lato');
+
+a {
+  text-decoration: none;
+}
+
+.footer {
+  background-color: #111111;
+}
+
+.footer>div {
+  max-width: 560px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.network-social {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer img {
+  width: 16px;
+  margin: 10px 4px;
+}
+
+.footer label {
+  display: block;
+  color: white;
+  font-size: 12px;
+  font-weight: lighter;
+  margin: 10px 4px;
+}
+
+.message {
+  height: 14px;
+  background-color: #7F479B;
+  color: #C6A5D6;
+  font-size: 11px;
+  margin-top: 0;
+}

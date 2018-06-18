@@ -1,0 +1,24 @@
+ @import url('https://fonts.googleapis.com/css?family=Lato');
+
+.btn-submit {
+  display: inline-block;
+  width: 80%;
+  height: 48px;
+  background-color: #7F479B;
+  color: #FFFF;
+  font-size: 18px;
+  font-weight: 600;
+  font-family: 'Lato', sans-serif;
+  text-transform: uppercase;
+  text-align: center;
+  letter-spacing: 0.05em;
+  border: 0;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.btn-submit:hover {
+  background-color: #ECDDF3;
+  border: 2px dotted #7F479B;
+}

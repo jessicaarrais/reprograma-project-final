@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css?family=Lato');
+
+.div-submit {
+  margin-bottom: 16px;
+}
+
+.div-submit label {
+  display: block;
+  width: 80%;
+  margin: 0 auto 4px;
+  font-family: 'Lato', sans-serif;
+  font-size: 14px;
+  font-weight: 600px;
+  text-align: left;
+}
+
+.input-submit {
+  box-sizing: border-box;
+  display: block;
+  width: 80%;
+  height: 40px;
+  margin: 0 auto;
+  font-size: 14px;
+  font-family: 'Lato', sans-serif;
+  text-align: center;
+  border-radius: 6px;
+  transition: all 0.3s ease-in-out;
+}
+
+.input-submit:focus {
+  border: 2px dotted #7F479B;
+}

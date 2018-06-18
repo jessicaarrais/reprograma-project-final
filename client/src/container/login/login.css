@@ -1,0 +1,28 @@
+/*  CSS PATTERN FOR LOGIN AND HOME PAGES */
+@import url('https://fonts.googleapis.com/css?family=Lato');
+
+.body {
+  min-height: 80vh;
+}
+
+.body p {
+  color: #7F479B;
+}
+
+.form-submit {
+  display: block;
+  width: 80%;
+  max-width: 400px;
+  margin: auto;
+  padding-top: 24px;
+  padding-bottom: 24px;
+  border: 3px solid #7F479B;
+  border-radius: 6px;
+}
+
+.form-submit h1 {
+  font-family: 'Lato', sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+  margin: 0 auto 8px;
+}

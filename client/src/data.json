@@ -1,0 +1,18 @@
+[
+  {
+    "_id": 1,
+    "name": "Jessica",
+    "email": "jessica@gmail.com",
+    "password": "123456",
+    "updatedAt": "2018-06-19T12:46:20.462Z",
+    "createdAt": "2018-06-19T12:46:20.462Z"
+  },
+  {
+    "_id": 2,
+    "name": "Sonne",
+    "email": "sonne@gmail.com",
+    "password": "654321",
+    "updatedAt": "2018-06-19T12:46:20.462Z",
+    "createdAt": "2018-06-19T12:46:20.462Z"
+  }
+]

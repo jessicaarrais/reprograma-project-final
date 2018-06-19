@@ -12,7 +12,6 @@ class Login extends Component {
     this.state = {
       email: null,
       password: null,
-      erro: null,
     };
   }
 
@@ -23,26 +22,34 @@ class Login extends Component {
   }
 
   handleSubmit = () => {
+    const temp = this.fetchURL('http://localhost:3001/api/user');
+    console.log(temp);
+    if (temp) {
+      this.props.onLoginClick(this.state.email, this.state.password);
+    }
+    this.props.history.push('/');
+  }
+
+  fetchURL = (url) => {
     // TODO SEARCH USER ON THE DATABASE
-    fetch('http://localhost:3001/api/user')
+    let resp;
+    fetch(url)
       .then(res => res.json())
-      .then(res => res.find((user) => {
-        if (!(user.email === this.state.email) && !(user.password === this.state.password)) {
-          console.log(user);
-          this.setState({ erro: res.error });
-        }
-        this.props.onLoginClick(this.state.email, this.state.password);
-        this.props.history.push('/');
-        return user;
-      })).catch((err) => {
+      .then((res) => {
+        resp = res.data.find(user => (
+          user.email === this.state.email && user.password === this.state.password
+        ));
+      })
+      .catch((err) => {
         console.log('erro login', err);
       });
+    console.log('was the user founded?', resp);
+    return resp;
   }
 
   render() {
     return (
       <div className="body">
-        {this.state.erro && <p>{this.state.erro}</p>}
         <form className="form-submit" onSubmit={this.handleSubmit}>
           <h1>Login</h1>
           <Input
@@ -76,6 +83,7 @@ class Login extends Component {
 
 Login.propTypes = {
   onLoginClick: PropTypes.func.isRequired,
+  onLogoffClick: PropTypes.func.isRequired,
   history: PropTypes.object.isRequired,
 };
 

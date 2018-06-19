@@ -18,7 +18,7 @@ class Container extends Component {
 
   onLoginClick = (email, password, name = null) => {
     this.setState({ userIsLogged: true });
-    console.log('current', this.state.userIsLogged, name, email, password);
+    console.log('current user', this.state.userIsLogged, name, email, password);
   }
 
   onLogoffClick = () => {
@@ -52,6 +52,7 @@ class Container extends Component {
               <Login
                 userIsLogged={this.state.userIsLogged}
                 onLoginClick={this.onLoginClick}
+                onLogoffClick={this.onLogoffClick}
                 history={props.history}
               />
             )}

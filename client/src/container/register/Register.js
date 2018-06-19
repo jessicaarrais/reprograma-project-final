@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import 'whatwg-fetch';
 import { Link } from 'react-router-dom';
 import Input from '../../components/input/Input';
 import Button from '../../components/button/Button';
@@ -9,7 +10,7 @@ class Register extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: '',
+      name: null,
       email: null,
       password: null,
       confirmPassword: null,
@@ -25,34 +26,38 @@ class Register extends Component {
 
   handleSubmit = (e) => {
     if (
-      this.state.name !== null &&
-      this.state.email !== null &&
-      this.state.password !== null &&
-      this.confirmPassword !== null
+    this.state.name !== null &&
+    this.state.email !== null &&
+    this.state.password !== null &&
+    this.confirmPassword !== null
     ) {
       if (this.state.password !== this.state.confirmPassword) {
         e.preventDefault();
         alert('Senhas incompatíveis');
         return;
       }
-
-      // TODO SAVE NEW USER ON THE DATABASE
       const { name, email, password } = this.state;
-      fetch('http://localhost:3001/api/user', {
+      this.fetchURL('http://localhost:3001/api/user', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name, email, password }),
-      }).then(res => res.json()).then((res) => {
-        if (!res.success) this.setState({ error: res.error.message || res.error});
-        this.setState({ error: null });
-        console.log('entrou no fetch do cadastro');
-      }).catch((err) => {
-        console.log('erro cadastro', err);
       });
-
       this.props.onLoginClick(this.state.email, this.state.password, this.state.name);
       this.props.history.push('/');
     }
+  }
+
+  fetchURL = (url, method) => {
+    // TODO SAVE NEW USER ON THE DATABASE
+    fetch(url, method)
+      .then(res => res.json())
+      .then((res) => {
+        if (!res.success) this.setState({ error: res.error.message || res.error});
+        this.setState({ error: null });
+        console.log('entrou no 2 then do cadastro');
+      }).catch((err) => {
+        console.log('erro cadastro', err);
+      });
   }
 
   render() {

@@ -19,21 +19,19 @@ class Home extends Component {
       this.setState({
         latitude: location.coords.latitude,
         longitude: location.coords.longitude,
-      })
-      console.log(location.coords.latitude)
-      console.log(location.coords.longitude)
-      console.log(location.coords.accuracy)
-    })
+      });
+      console.log(location.coords.latitude);
+      console.log(location.coords.longitude);
+      console.log(location.coords.accuracy);
+    });
     if (-23.5627 === this.state.latitude && -46.6546 === this.state.longitude) {
-      console.log('confirmado')
+      console.log('confirmado');
     } else {
-      alert('Você nao está na EH! =p')
+      alert('Você nao está na EH! =p');
       console.log(this.state.latitude, this.state.longitude);
     }
-    console.log(this.props.userIsLogged)
+    console.log(this.props.userIsLogged);
   }
-
-
 
   render() {
     return (

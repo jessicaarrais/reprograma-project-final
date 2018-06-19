@@ -1,60 +1,50 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import './input.css';
 
-class Input extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      user: {
-        name: '',
-        email: '',
-        password: '',
-      },
-    };
-  }
-
-  handleChange = (e) => {
+function Input(props) {
+  const handleChangeValidate = (e) => {
     const property = e.target.name;
-    const value = e.target.value;
-    const target = {
-      [property]: value,
-    };
+    const handleValue = e.target.value;
+    const regex = /^(([^<>()\]\\.,;:\s@"]+(\.[^<>()\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-    this.setState({
-      user: {
-        target,
-      },
-    });
+    if (handleValue.trim() === '') {
+      return;
+    }
+    if (props.type === 'email' && !regex.test(handleValue)) {
+      return;
+    }
+    if (props.minLength && handleValue.length < props.minLength) {
+      return;
+    }
+    if (props.maxLength && handleValue.length > props.maxLength) {
+      return;
+    }
 
-    console.log(target);
+    props.getInputValues(property, handleValue);
+  };
 
-    this.props.getUser(this.state.user);
-  }
-
-  render() {
-    return (
-      <div className="div-submit">
-        <label htmlFor={this.props.id}>
-          {this.props.label}
-        </label>
-        <input
-          className="input-submit"
-          type={this.props.type}
-          name={this.props.name}
-          id={this.props.id}
-          minLength={this.props.minLength}
-          maxLength={this.props.maxLength}
-          required
-          onChange={this.handleChange}
-        />
-      </div>
-    );
-  }
+  return (
+    <div className="div-submit">
+      <label htmlFor={props.id}>
+        {props.label}
+      </label>
+      <input
+        className="input-submit"
+        type={props.type}
+        name={props.name}
+        id={props.id}
+        minLength={props.minLength}
+        maxLength={props.maxLength}
+        required
+        onChange={handleChangeValidate}
+      />
+    </div>
+  );
 }
 
 Input.propTypes = {
-  getUser: PropTypes.func.isRequired,
+  getInputValues: PropTypes.func,
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
@@ -64,6 +54,7 @@ Input.propTypes = {
 };
 
 Input.defaultProps = {
+  getInputValues: () => {},
   minLength: '',
   maxLength: '',
 };

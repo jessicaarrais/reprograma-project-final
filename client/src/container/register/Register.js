@@ -6,18 +6,53 @@ import Button from '../../components/button/Button';
 import './register.css';
 
 class Register extends Component {
-  getUser = (user) => {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: '',
+      email: null,
+      password: null,
+      confirmPassword: null,
+      error: null,
+    };
+  }
+
+  getInputValues = (property, handleValue) => {
     this.setState({
-      user: {
-        email: user.email,
-        password: user.password,
-      },
+      [property]: handleValue,
     });
   }
 
-  handleSubmit = () => {
-    this.props.onLoginClick(this.state.user);
-    this.props.history.push('/');
+  handleSubmit = (e) => {
+    if (
+      this.state.name !== null &&
+      this.state.email !== null &&
+      this.state.password !== null &&
+      this.confirmPassword !== null
+    ) {
+      if (this.state.password !== this.state.confirmPassword) {
+        e.preventDefault();
+        alert('Senhas incompatíveis');
+        return;
+      }
+
+      // TODO SAVE NEW USER ON THE DATABASE
+      const { name, email, password } = this.state;
+      fetch('http://localhost:3001/api/user', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, password }),
+      }).then(res => res.json()).then((res) => {
+        if (!res.success) this.setState({ error: res.error.message || res.error});
+        this.setState({ error: null });
+        console.log('entrou no fetch do cadastro');
+      }).catch((err) => {
+        console.log('erro cadastro', err);
+      });
+
+      this.props.onLoginClick(this.state.email, this.state.password, this.state.name);
+      this.props.history.push('/');
+    }
   }
 
   render() {
@@ -32,7 +67,7 @@ class Register extends Component {
             name="name"
             id="name"
             minLength="6"
-            getUser={this.getUser}
+            getInputValues={this.getInputValues}
           />
 
           <Input
@@ -40,7 +75,7 @@ class Register extends Component {
             type="email"
             name="email"
             id="email"
-            getUser={this.getUser}
+            getInputValues={this.getInputValues}
           />
 
           <Input
@@ -50,17 +85,17 @@ class Register extends Component {
             id="password"
             minLength="6"
             maxLength="10"
-            getUser={this.getUser}
+            getInputValues={this.getInputValues}
           />
 
           <Input
             label="Confirmar senha:"
             type="password"
-            name="password"
+            name="confirmPassword"
             id="password"
             minLength="6"
             maxLength="10"
-            getUser={this.getUser}
+            getInputValues={this.getInputValues}
           />
 
           <Button>Entrar</Button>

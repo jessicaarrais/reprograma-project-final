@@ -16,10 +16,9 @@ class Container extends Component {
     };
   }
 
-  onLoginClick = (user) => {
-    console.log('prev', this.state.userIsLogged);
+  onLoginClick = (email, password, name = null) => {
     this.setState({ userIsLogged: true });
-    console.log('current', this.state.userIsLogged, user);
+    console.log('current', this.state.userIsLogged, name, email, password);
   }
 
   onLogoffClick = () => {

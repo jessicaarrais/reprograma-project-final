@@ -29,7 +29,7 @@ router.get('/', (req, res) => {
 });
 
 router.get('/user', (req, res) => {
-  res.json({ message: 'Hello, DataBase!', data: UserSchema });
+  res.json({ message: 'Hello, DataBase!', data: data });
 });
 
 router.post('/user', (req, res) => {

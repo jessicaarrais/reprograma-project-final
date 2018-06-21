@@ -56,8 +56,8 @@ class Login extends Component {
         if (!res.success) this.setState({ error: res.error });
         else this.setState({ data: res.data });
       });
-  console.log(this.state.error, this.state.data);
-}
+    console.log(this.state.error, this.state.data);
+  }
 
   render() {
     return (

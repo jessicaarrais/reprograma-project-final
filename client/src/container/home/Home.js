@@ -43,11 +43,11 @@ class Home extends Component {
 
         <div className="card-links">
           <p>Dê uma olhadinha na agenda e nos nossos links úteis!!</p>
-          <Button>Só clicar aqui!</Button>
+          <a href="https://lannasmc.github.io" target="_blank">Só clicar aqui!</a>
         </div>
 
         <Link to="/" onClick={this.props.onLogoffClick}>
-          <p>"Sair >> Até a próxima! o/"</p>
+          <p>Sair >> Até a próxima! o/</p>
         </Link>
       </div>
 

@@ -1,18 +1,9 @@
-/*  CSS PATTERN FOR LOGIN AND HOME PAGES */
 @import url('https://fonts.googleapis.com/css?family=Lato');
-
 .body {
   min-height: 80vh;
 }
 
-.body p {
-  color: #7F479B;
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 85%;
-}
-
-.form-submit {
+.confirmation {
   display: block;
   width: 80%;
   max-width: 400px;
@@ -23,19 +14,19 @@
   border-radius: 6px;
 }
 
-.form-submit h1 {
+.confirmation h1 {
   font-family: 'Lato', sans-serif;
   font-size: 24px;
   font-weight: 400;
   margin: 0 auto 8px;
 }
-.card-links {
-  display: block;
-  width: 80%;
-  max-width: 400px;
-  margin: 16px auto auto;
-  padding-top: 24px;
-  padding-bottom: 24px;
-  border: 3px solid #7F479B;
-  border-radius: 6px;
+
+.confirmation img {
+  width: 280px;
+  max-width: 80%;
+  margin: 16px auto;
+}
+
+.confirmation p {
+  color: #7F479B;
 }

@@ -3,13 +3,13 @@
   "name": "Create React App Sample",
   "icons": [
     {
-      "src": "favicon.ico",
+      "src": "reprograma-icon.png",
       "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
+      "type": "image/x-ico"
     }
   ],
   "start_url": "./index.html",
   "display": "standalone",
-  "theme_color": "#000000",
+  "theme_color": "#7F479B",
   "background_color": "#ffffff"
 }

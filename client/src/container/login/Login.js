@@ -6,12 +6,16 @@ import Input from '../../components/input/Input';
 import Button from '../../components/button/Button';
 import './login.css';
 
+let resp;
+
 class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
       email: null,
       password: null,
+      data: [],
+      error: '',
     };
   }
 
@@ -22,9 +26,9 @@ class Login extends Component {
   }
 
   handleSubmit = () => {
-    const temp = this.fetchURL('http://localhost:3001/api/user');
-    console.log(temp);
-    if (temp) {
+    this.fetchURL('http://localhost:3001/api/user');
+    console.log(resp);
+    if (resp) {
       this.props.onLoginClick(this.state.email, this.state.password);
     }
     this.props.history.push('/');
@@ -32,7 +36,6 @@ class Login extends Component {
 
   fetchURL = (url) => {
     // TODO SEARCH USER ON THE DATABASE
-    let resp;
     fetch(url)
       .then(res => res.json())
       .then((res) => {
@@ -44,8 +47,17 @@ class Login extends Component {
         console.log('erro login', err);
       });
     console.log('was the user founded?', resp);
-    return resp;
   }
+
+  loadCommentsFromServer = () => {
+    fetch('http://localhost:3001/api/user')
+      .then(data => data.json())
+      .then((res) => {
+        if (!res.success) this.setState({ error: res.error });
+        else this.setState({ data: res.data });
+      });
+  console.log(this.state.error, this.state.data);
+}
 
   render() {
     return (
@@ -83,7 +95,6 @@ class Login extends Component {
 
 Login.propTypes = {
   onLoginClick: PropTypes.func.isRequired,
-  onLogoffClick: PropTypes.func.isRequired,
   history: PropTypes.object.isRequired,
 };
 

@@ -29,7 +29,7 @@ router.get('/', (req, res) => {
 });
 
 router.get('/user', (req, res) => {
-  res.json({ data: data });
+  res.json({ message: 'Hello, DataBase!', data: UserSchema });
 });
 
 router.post('/user', (req, res) => {
@@ -47,28 +47,3 @@ router.post('/user', (req, res) => {
 app.use('/api', router);
 
 app.listen(API_PORT, () => console.log(`Listening on port ${API_PORT}`));
-
-/*
-handleSubmit = () => {
-  this.fetchURL('http://localhost:3001/api/user');
-  console.log(this.erro);
-  if (!this.erro) {
-    this.props.onLoginClick(this.state.email, this.state.password);
-  }
-  this.props.history.push('/');
-}
-
-fetchURL = (url) => {
-  // TODO SEARCH USER ON THE DATABASE
-  fetch(url)
-    .then(res => res.json())
-    .then(res => res.data.find((ele) => {
-      console.log('was the user founded?', ele.email === this.state.email && ele.password === this.state.password);
-      this.setState({
-        erro: ele.email === this.state.email && ele.password === this.state.password,
-      });
-      return ele.email === this.state.email && ele.password === this.state.password;
-    })).catch((err) => {
-      console.log('erro login', err);
-    });
-} */

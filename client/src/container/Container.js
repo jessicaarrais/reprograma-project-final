@@ -4,6 +4,7 @@ import Navbar from '../components/navbar/Navbar';
 import Home from './home/Home';
 import Login from './login/Login';
 import Register from './register/Register';
+import Confirmation from './confirmation/Confirmation';
 import NotFound from './not-found/NotFound';
 import Footer from '../components/footer/Footer';
 import './Container.css';
@@ -34,12 +35,13 @@ class Container extends Component {
           <Route
             exact
             path="/"
-            render={() => {
+            render={(props) => {
               if (this.state.userIsLogged) {
                 return (
                   <Home
                     userIsLogged={this.state.userIsLogged}
                     onLogoffClick={this.onLogoffClick}
+                    history={props.history}
                   />
                 );
               }
@@ -64,6 +66,14 @@ class Container extends Component {
                 userIsLogged={this.state.userIsLogged}
                 onLoginClick={this.onLoginClick}
                 history={props.history}
+              />
+            )}
+          />
+          <Route
+            path="/confirmacao"
+            render={() => (
+              <Confirmation
+                onLogoffClick={this.onLogoffClick}
               />
             )}
           />

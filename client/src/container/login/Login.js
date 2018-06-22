@@ -49,16 +49,6 @@ class Login extends Component {
     console.log('was the user founded?', resp);
   }
 
-  loadCommentsFromServer = () => {
-    fetch('http://localhost:3001/api/user')
-      .then(data => data.json())
-      .then((res) => {
-        if (!res.success) this.setState({ error: res.error });
-        else this.setState({ data: res.data });
-      });
-    console.log(this.state.error, this.state.data);
-  }
-
   render() {
     return (
       <div className="body">

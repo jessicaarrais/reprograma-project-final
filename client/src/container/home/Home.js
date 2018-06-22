@@ -22,7 +22,7 @@ class Home extends Component {
         latitude: (location.coords.latitude).toPrecision(5),
         longitude: (location.coords.longitude).toPrecision(5),
       }, () => {
-        if ('-23.562' === this.state.latitude && '-46.654' === this.state.longitude) {
+        if (('-23.561' <= this.state.latitude && '-23.565' >= this.state.latitude) && ('-46.653' <= this.state.longitude && '-46.655' >= this.state.longitude)) {
           console.log('confirmado');
           this.props.history.push('/confirmacao');
         } else {
@@ -43,7 +43,7 @@ class Home extends Component {
 
         <div className="card-links">
           <p>Dê uma olhadinha na agenda e nos nossos links úteis!!</p>
-          <a href="https://lannasmc.github.io" target="_blank">Só clicar aqui!</a>
+          <a href="https://lannasmc.github.io" target="_blank" rel="noopener noreferrer">Só clicar aqui!</a>
         </div>
 
         <Link to="/" onClick={this.props.onLogoffClick}>
